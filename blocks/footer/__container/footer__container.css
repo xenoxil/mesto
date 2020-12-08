@@ -1,0 +1,17 @@
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    width: 186px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@media screen and (min-width:768px) {
+    .footer__container {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: calc(100% - 160px);
+    }
+}

@@ -1,0 +1,16 @@
+.footer__copyright {
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    /* identical to box height, or 100% */
+    margin: 0;
+}
+
+@media screen and (min-width:768px) {
+    .footer__copyright {
+        line-height: 16px;
+        align-self: flex-end;
+    }
+}
