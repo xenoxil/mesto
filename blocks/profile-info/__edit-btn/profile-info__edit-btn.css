@@ -6,4 +6,16 @@
     margin: 0;
     border: 0;
     background-color: black;
+    margin-left: 18px;
+    align-self: center;
+    outline: none;
+}
+
+@media screen and (max-width:650px) {
+    .profile-info__edit-btn {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+        background-size: cover;
+    }
 }
