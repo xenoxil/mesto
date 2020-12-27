@@ -9,4 +9,5 @@
     align-self: center;
     background-size: contain;
     outline: none;
+    z-index: 2;
 }
