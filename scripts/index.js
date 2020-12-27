@@ -5,7 +5,7 @@ let closeBtn = document.querySelector('.popup__closebtn');
 
 //обьявляем переменные для обработки инпутов
 let Name = document.querySelector('.profile-info__name');
-let Title = document.querySelector('.profile-info__title');
+let Title = document.querySelector('.profile__title');
 let inputs = document.querySelectorAll('.popup__input');
 let inputName = inputs[0];
 let inputTitle = inputs[1];
@@ -54,7 +54,7 @@ function handleFormSubmit(evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 
 
-let likeBtns = document.querySelectorAll('.element__likebtn');
+/*let likeBtns = document.querySelectorAll('.element__likebtn');
 let likeElem = likeBtns[0];
 let likeElem2 = likeBtns[1];
 let likeElem3 = likeBtns[2];
@@ -66,4 +66,4 @@ let likeElem6 = likeBtns[5];
 function likeActive() {
     likeBtns.classList.toogle('element__likebtn_active');
 }
-likeElem.addEventListener('click', likeActive);
+likeElem.addEventListener('click', likeActive);*/
