@@ -25,3 +25,4 @@
 @import url(../blocks/popup/__submitbtn/popup__submitbtn.css);
 @import url(../blocks/popup/__closebtn/popup__closebtn.css);
 @import url(../blocks/popup/popup_opened.css);
+@import url(../blocks/hover/hover.css);
