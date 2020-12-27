@@ -13,14 +13,14 @@ let inputTitle = inputs[1];
 
 
 function popupShow() {
-    popup.classList.add('popup_opened');
+    popup.classList.add('popup_status_opened');
     inputName.value = Name.textContent;
     inputTitle.value = Title.textContent;
 }
 profileEditBtn.addEventListener('click', popupShow);
 
 function popupClose() {
-    popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_status_opened');
 }
 closeBtn.addEventListener('click', popupClose);
 
@@ -46,7 +46,7 @@ function handleFormSubmit(evt) {
     // Вставьте новые значения с помощью textContent
     Name.textContent = nameInput;
     Title.textContent = jobInput;
-    popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_status_opened');
 }
 
 // Прикрепляем обработчик к форме:
