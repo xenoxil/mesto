@@ -1,4 +1,5 @@
-.profile-info {
+.profile__container {
     display: flex;
     justify-content: center;
+    margin-top: 26px;
 }

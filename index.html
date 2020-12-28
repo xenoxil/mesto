@@ -11,74 +11,74 @@
 <body class='body'>
     <div class='page'>
         <header class='header'>
-            <h2><img src='./images/header-logo.svg' class='header__logo' alt='Логотип Место Russia'>
-            </h2>
+            <img src='./images/header-logo.svg' class='header__logo' alt='Логотип Место Russia'>
+
         </header>
         <main class='content'>
             <section class='profile'>
                 <img src='./images/avatar.jpg' alt='Аватар' class='profile__avatar'>
                 <div>
-                    <div class='profile-info'>
-                        <h3 class='profile-info__name'>Жак-Ив Кусто</h3>
-                        <button class='profile-info__edit-btn hover' type='button'></button>
+                    <div class='profile__container'>
+                        <h1 class='profile__name'>Жак-Ив Кусто</h1>
+                        <button class='profile__edit-btn hover' type='button' aria-label="Кнопка редактировать профиль"></button>
                     </div>
                     <p class='profile__title'>Исследователь океана</p>
                 </div>
-                <button class='profile__add-btn hover' type='button'></button>
+                <button class='profile__add-btn hover' type='button' aria-label="Кнопка добавить карточку"></button>
             </section>
             <section>
                 <ul class='elements'>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1088404-unsplash.png' alt='Cентинский храм. Карачаевск'>
                         <div class='element__footer'>
-                            <p class='element__title'>Карачаевск</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Карачаевск</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1556355-unsplash.png' alt='Склон горы Эльбрус, покрытый лесом'>
                         <div class='element__footer'>
-                            <p class='element__title'>Гора Эльбрус</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Гора Эльбрус</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1404681-unsplash.png' alt='Зоря в степи. В далеке виднеется гора'>
                         <div class='element__footer'>
-                            <p class='element__title'>Домбай</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Домбай</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1556355-unsplash.png' alt='Склон горы Эльбрус, покрытый лесом'>
                         <div class='element__footer'>
-                            <p class='element__title'>Гора Эльбрус</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Гора Эльбрус</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1404681-unsplash.png' alt='Зоря в степи. В далеке виднеется гора'>
                         <div class='element__footer'>
-                            <p class='element__title'>Домбай</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Домбай</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                     <li class='element'>
                         <img src='./images/kirill-pershin-1088404-unsplash.png' alt='Сентинский храм. г. Карачаевск'>
                         <div class='element__footer'>
-                            <p class='element__title'>Карачаево-Черкесия</p>
-                            <button class='element__likebtn hover' type='button'></button>
+                            <h2 class='element__title'>Карачаево-Черкесия</h2>
+                            <button class='element__likebtn hover' type='button' aria-label="Кнопка лайк"></button>
                         </div>
                     </li>
                 </ul>
             </section>
             <section class='popup'>
-                <form class='popup__container' id='editProfileForm'>
+                <form class='popup__container' id='editProfileForm' name='editProfileForm'>
                     <h3 class='popup__header'>Редактировать профиль</h3>
-                    <input class='popup__input popup__profilename' type='text' name='popup__profilename'>
-                    <input class='popup__input popup__profiletitle' type='text' name='popup__profiletitle'>
-                    <button class='popup__submitbtn hover' type='submit'>Сохранить</button>
-                    <button class='popup__closebtn hover' type='reset'></button>
+                    <input class='popup__input popup__profilename' type='text' name='popup__profilename' id='popup__profilename'>
+                    <input class='popup__input popup__profiletitle' type='text' name='popup__profiletitle' id='popup__profiletitle'>
+                    <button class='popup__submitbtn hover' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
+                    <button class='popup__closebtn hover' type='reset' aria-label="Кнопка закрыть"></button>
                 </form>
 
             </section>

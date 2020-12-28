@@ -2,16 +2,16 @@
     font-family: Inter, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 14px;
-    /* identical to box height, or 100% */
+    font-size: 18px;
+    line-height: 22px;
     margin: 0;
     color: #545454;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (max-width:645px) {
     .footer__copyright {
-        line-height: 16px;
-        align-self: flex-end;
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 19px;
     }
 }
