@@ -11,6 +11,8 @@ let inputTitle = document.querySelector('.popup__profiletitle');
 
 //Переменные для функции handleFormSubmit(evt)
 let formElement = document.querySelector('.popup__container');
+const nameInput = inputName.value;
+const jobInput = inputTitle.value;
 
 
 
@@ -45,8 +47,7 @@ function handleFormSubmit(evt) {
     // Получите значение полей из свойства value
 
     // Выберите элементы, куда должны быть вставлены значения полей
-    const nameInput = inputName.value;
-    const jobInput = inputTitle.value;
+
 
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput;
