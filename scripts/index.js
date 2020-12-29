@@ -6,8 +6,8 @@ let closeBtn = document.querySelector('.popup__closebtn');
 //обьявляем переменные для обработки инпутов
 let profileName = document.querySelector('.profile__name');
 let profileTitle = document.querySelector('.profile__title');
-let inputName = document.querySelector('.popup__profilename');
-let inputTitle = document.querySelector('.popup__profiletitle');
+const inputName = document.querySelector('.popup__profilename');
+const inputTitle = document.querySelector('.popup__profiletitle');
 
 //Переменные для функции handleFormSubmit(evt)
 let formElement = document.querySelector('.popup__container');
@@ -46,13 +46,11 @@ function handleFormSubmit(evt) {
     // Получите значение полей из свойства value
 
     // Выберите элементы, куда должны быть вставлены значения полей
-    const nameInput = inputName.value;
-    const jobInput = inputTitle.value;
+
 
     // Вставьте новые значения с помощью textContent
-    profileName.textContent = nameInput;
-    profileTitle.textContent = jobInput;
-    debugger;
+    profileName.textContent = inputName.value;
+    profileTitle.textContent = inputTitle.value;
     closePopup();
 }
 
