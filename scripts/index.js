@@ -50,8 +50,8 @@ function handleFormSubmit(evt) {
 
 
     // Вставьте новые значения с помощью textContent
-    profileName.textContent = nameInput;
-    profileTitle.textContent = jobInput;
+    profileName.textContent = nameInput.value;
+    profileTitle.textContent = jobInput.value;
     closePopup();
 }
 
