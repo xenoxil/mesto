@@ -6,6 +6,7 @@
     margin: 0;
     border: 0;
     background-color: black;
+    background-repeat: no-repeat;
     margin-left: 18px;
     align-self: center;
     outline: none;
@@ -16,6 +17,7 @@
         width: 18px;
         height: 18px;
         margin-left: 10px;
-        background-size: cover;
+        background-size: contain;
+        padding-right: 18px;
     }
 }
