@@ -6,8 +6,8 @@ let closeBtn = document.querySelector('.popup__closebtn');
 //обьявляем переменные для обработки инпутов
 let profileName = document.querySelector('.profile__name');
 let profileTitle = document.querySelector('.profile__title');
-const inputName = document.querySelector('.popup__profilename');
-const inputTitle = document.querySelector('.popup__profiletitle');
+const inputName = document.getElementById('popup__profilename');
+const inputTitle = document.getElementById('popup__profiletitle');
 
 //Переменные для функции handleFormSubmit(evt)
 let formElement = document.querySelector('.popup__container');

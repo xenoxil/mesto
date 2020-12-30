@@ -10,6 +10,7 @@
     margin-left: 18px;
     align-self: center;
     outline: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width:650px) {
