@@ -3,6 +3,7 @@ let profileEditBtn = document.querySelector('.profile__edit-btn');
 let popup = document.querySelector('.popup');
 let closeBtn = document.querySelector('.popup__closebtn');
 
+
 //обьявляем переменные для обработки инпутов
 let profileName = document.querySelector('.profile__name');
 let profileTitle = document.querySelector('.profile__title');
@@ -11,6 +12,34 @@ const inputTitle = document.getElementById('popup__profiletitle');
 
 //Переменные для функции handleFormSubmit(evt)
 let formElement = document.querySelector('.popup__container');
+
+//карточки "из коробки"
+const elementsTemplate = document.querySelector('#elements-template').content;
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 
 
 
@@ -28,6 +57,9 @@ function closePopup() {
     popup.classList.remove('popup_status_opened');
 }
 
+function clickLike(event) {
+    event.target.classList.toogle('element__likebtn_active');
+}
 
 
 // Находим форму в DOM
@@ -37,23 +69,22 @@ function closePopup() {
 // она никуда отправляться не будет
 function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Так мы можем определить свою логику отправки.
-    // О том, как это делать, расскажем позже.
-    // Находим поля формы в DOM
-    // Воспользуйтесь инструментом .querySelector()
-    // Воспользуйтесь инструментом .querySelector()
-
-    // Получите значение полей из свойства value
-
-    // Выберите элементы, куда должны быть вставлены значения полей
-
-
-    // Вставьте новые значения с помощью textContent
+    // Так мы можем определить свою логику отправки.    
     profileName.textContent = inputName.value;
     profileTitle.textContent = inputTitle.value;
     closePopup();
 }
 
+function addElement(obj) {
+    const userElement = elementsTemplate.cloneNode(true);
+    const elementsList = document.querySelector('.elements')
+    userElement.querySelector('.element__image').src = obj.link;
+    userElement.querySelector('.element__title').textContent = obj.name;
+    userElement.querySelector('.element__likebtn').addEventListener('click', clickLike);
+
+    elementsList.append(userElement);
+}
+initialCards.forEach(addElement);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
@@ -61,18 +92,3 @@ formElement.addEventListener('submit', handleFormSubmit);
 profileEditBtn.addEventListener('click', showPopup);
 
 closeBtn.addEventListener('click', closePopup);
-
-
-/*let likeBtns = document.querySelectorAll('.element__likebtn');
-let likeElem = likeBtns[0];
-let likeElem2 = likeBtns[1];
-let likeElem3 = likeBtns[2];
-let likeElem4 = likeBtns[3];
-let likeElem5 = likeBtns[4];
-let likeElem6 = likeBtns[5];
-
-
-function likeActive() {
-    likeBtns.classList.toogle('element__likebtn_active');
-}
-likeElem.addEventListener('click', likeActive);*/
