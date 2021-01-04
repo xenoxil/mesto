@@ -4,10 +4,14 @@ let popupEditProfile = document.querySelector('.popupEditProfile');
 let closeBtn = document.querySelector('.popup_closebtn');
 let closeBtnEdit = document.querySelector('.popup_closeBtnEdit');
 let closeBtnAdd = document.querySelector('.popup__closeBtnAdd');
+let closeBtnImage = document.querySelector('.popup__closeBtnImage');
 let popup = document.querySelector('.popup');
 const elementsList = document.querySelector('.elements');
 const addElementBtn = document.querySelector('.profile__add-btn');
-const popupAddNewElement = document.querySelector('.popupAddNewElement')
+const popupAddNewElement = document.querySelector('.popupAddNewElement');
+const popupImage = document.querySelector('.popupImage');
+let popup__image = document.querySelector('.popup__image');
+let popup__element = document.querySelector('.popup__element');
 
 
 
@@ -107,6 +111,7 @@ function addElement(obj) {
     const userElement = elementsTemplate.cloneNode(true);
     userElement.querySelector('.element__image').src = obj.link;
     userElement.querySelector('.element__title').textContent = obj.name;
+    userElement.querySelector('.element__image').alt = obj.name;
     elementsList.prepend(userElement);
 }
 
@@ -143,11 +148,25 @@ closeBtnAdd.addEventListener('click', () => {
     closePopup(popupAddNewElement);
 });
 
+closeBtnImage.addEventListener('click', () => {
+    closePopup(popupImage);
+});
+
 //делегируем лайки на родителя элементс
 elementsList.addEventListener('click', function(evt) {
     const tar = evt.target;
     if (tar.classList.contains('element__likebtn')) {
         tar.classList.toggle('element__likebtn_active');
+    }
+});
+
+//делегируем открытие картинок  на родителя элементс
+elementsList.addEventListener('click', function(evt) {
+    const tar = evt.target;
+    if (tar.classList.contains('element__image')) {
+        popup__image.src = tar.src;
+        popup__element.textContent = tar.alt;
+        showPopup(popupImage);
     }
 });
 //делегируем удаление на родителя элементс
