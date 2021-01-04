@@ -1,17 +1,17 @@
 //Обьявляем переменные для обработки кликов
-let profileEditBtn = document.querySelector('.profile__edit-btn');
-let popupEditProfile = document.querySelector('.popupEditProfile');
-let closeBtn = document.querySelector('.popup_closebtn');
-let closeBtnEdit = document.querySelector('.popup_closeBtnEdit');
-let closeBtnAdd = document.querySelector('.popup__closeBtnAdd');
-let closeBtnImage = document.querySelector('.popup__closeBtnImage');
-let popup = document.querySelector('.popup');
+const profileEditBtn = document.querySelector('.profile__edit-btn');
+const popupEditProfile = document.querySelector('.popupEditProfile');
+const closeBtn = document.querySelector('.popup_closebtn');
+const closeBtnEdit = document.querySelector('.popup_closeBtnEdit');
+const closeBtnAdd = document.querySelector('.popup__closeBtnAdd');
+const closeBtnImage = document.querySelector('.popup__closeBtnImage');
+const popup = document.querySelector('.popup');
 const elementsList = document.querySelector('.elements');
 const addElementBtn = document.querySelector('.profile__add-btn');
 const popupAddNewElement = document.querySelector('.popupAddNewElement');
 const popupImage = document.querySelector('.popupImage');
-let popup__image = document.querySelector('.popup__image');
-let popup__element = document.querySelector('.popup__element');
+const popup__image = document.querySelector('.popup__image');
+const popup__element = document.querySelector('.popup__element');
 
 
 
@@ -26,8 +26,8 @@ inputTitle.value = profileTitle.textContent;
 
 
 //Переменные для функции handleFormSubmit(evt)
-let formElement = document.getElementById('editProfileForm');
-let formAddNewElement = document.getElementById('addNewElementForm');
+const formElement = document.getElementById('editProfileForm');
+const formAddNewElement = document.getElementById('addNewElementForm');
 
 //карточки "из коробки"
 const elementsTemplate = document.querySelector('#elements-template').content;
