@@ -28,7 +28,7 @@
             </section>
             <section>
                 <ul class='elements'>
-                    <li class='element'>
+                    <!--<li class='element'>
                         <img class='element__image' src='./images/kirill-pershin-1088404-unsplash.png' alt='Cентинский храм. Карачаевск'>
                         <div class='element__footer'>
                             <h2 class='element__title'>Карачаевск</h2>
@@ -69,11 +69,14 @@
                             <h2 class='element__title'>Карачаево-Черкесия</h2>
                             <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
                         </div>
-                    </li>
+                    </li>-->
                     <template id='elements-template'>
                             <li class='element'>
                                 <img class='element__image' src='' alt=''>
-                                <button class='element__trashbtn' type='button' aria-label='Кнопка удалить'></button>
+                                <button class='element__trashbtn hover' type='button' aria-label='Кнопка удалить'>
+                                  <img src='./images/Vector-1.svg' alt='Кнопка удалить' class='element__trashpic'>
+                                  <img src='./images/Vector.svg' alt='Кнопка удалить' class='element__trashpic'>
+                                </button>
                                 <div class='element__footer'>
                                     <h2 class='element__title'></h2>
                                     <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
@@ -83,15 +86,23 @@
 
                 </ul>
             </section>
-            <section class='popup'>
+            <section class='popup popupEditProfile'>
                 <form class='popup__container' id='editProfileForm' name='editProfileForm'>
                     <h3 class='popup__header'>Редактировать профиль</h3>
                     <input class='popup__input' type='text' name='popup__profilename' id='popup__profilename'>
                     <input class='popup__input' type='text' name='popup__profiletitle' id='popup__profiletitle'>
-                    <button class='popup__submitbtn' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
-                    <button class='popup__closebtn hover' type='reset' aria-label="Кнопка закрыть"></button>
+                    <button class='popup__submitbtn popup_submitProfile' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
+                    <button class='popup__closebtn popup_closeBtnEdit hover' type='reset' aria-label="Кнопка закрыть"></button>
                 </form>
-
+            </section>
+            <section class='popup popupAddNewElement'>
+                <form class='popup__container' id='addNewElementForm' name='addNewElementForm'>
+                    <h3 class='popup__header'>Новое место</h3>
+                    <input class='popup__input' type='text' name='popup__title' id='popup__title' placeholder='Название'>
+                    <input class='popup__input' type='url' name='popup__link' id='popup__link' placeholder='Ссылка на картинку'>
+                    <button class='popup__submitbtn popup__submitNew' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
+                    <button class='popup__closebtn popup__closeBtnAdd hover' type='reset' aria-label="Кнопка закрыть"></button>
+                </form>
             </section>
         </main>
         <footer class='footer'>

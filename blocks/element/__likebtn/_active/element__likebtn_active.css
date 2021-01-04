@@ -1,0 +1,7 @@
+.element__likebtn_active {
+    background-image: url(../../../../images/union.svg);
+}
+
+.element__likebtn_active:hover {
+    opacity: 1;
+}
