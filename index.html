@@ -28,48 +28,6 @@
             </section>
             <section>
                 <ul class='elements'>
-                    <!--<li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1088404-unsplash.png' alt='Cентинский храм. Карачаевск'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Карачаевск</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>
-                    <li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1556355-unsplash.png' alt='Склон горы Эльбрус, покрытый лесом'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Гора Эльбрус</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>
-                    <li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1404681-unsplash.png' alt='Зоря в степи. В далеке виднеется гора'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Домбай</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>
-                    <li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1556355-unsplash.png' alt='Склон горы Эльбрус, покрытый лесом'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Гора Эльбрус</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>
-                    <li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1404681-unsplash.png' alt='Зоря в степи. В далеке виднеется гора'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Домбай</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>
-                    <li class='element'>
-                        <img class='element__image' src='./images/kirill-pershin-1088404-unsplash.png' alt='Сентинский храм. г. Карачаевск'>
-                        <div class='element__footer'>
-                            <h2 class='element__title'>Карачаево-Черкесия</h2>
-                            <button class='element__likebtn' type='button' aria-label="Кнопка лайк"></button>
-                        </div>
-                    </li>-->
                     <template id='elements-template'>
                             <li class='element'>
                                 <img class='element__image' src='#' alt='#'>
@@ -87,19 +45,23 @@
                 </ul>
             </section>
             <section class='popup popupEditProfile'>
-                <form class='popup__container' id='editProfileForm' name='editProfileForm'>
+                <form class='popup__container' id='editProfileForm' name='editProfileForm' autocomplete='off' novalidate>
                     <h3 class='popup__header'>Редактировать профиль</h3>
-                    <input class='popup__input' type='text' name='popup__profilename' id='popup__profilename'>
-                    <input class='popup__input' type='text' name='popup__profiletitle' id='popup__profiletitle'>
+                    <input class='popup__input' type='text' name='popup__profilename' id='popup__profilename' required minlength="2" maxlength="40">
+                    <span class='error' id='popup__profilename-error'></span>
+                    <input class='popup__input' type='text' name='popup__profiletitle' id='popup__profiletitle' required minlength="2" maxlength="200">
+                    <span class='error' id='popup__profiletitle-error'></span>
                     <button class='popup__submitbtn popup__submitProfile' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
                     <button class='popup__closebtn popup__closeBtnEdit hover' type='reset' aria-label="Кнопка закрыть"></button>
                 </form>
             </section>
             <section class='popup popupAddNewElement'>
-                <form class='popup__container' id='addNewElementForm' name='addNewElementForm'>
+                <form class='popup__container' id='addNewElementForm' name='addNewElementForm' autocomplete='off' novalidate>
                     <h3 class='popup__header'>Новое место</h3>
-                    <input class='popup__input' type='text' name='popup__title' id='popup__title' placeholder='Название'>
-                    <input class='popup__input' type='url' name='popup__link' id='popup__link' placeholder='Ссылка на картинку'>
+                    <input class='popup__input' type='text' name='popup__title' id='popup__title' placeholder='Название' required minlength="2" maxlength="30">
+                    <span class='error' id='popup__title-error'></span>
+                    <input class='popup__input' type='url' name='popup__link' id='popup__link' placeholder='Ссылка на картинку' required>
+                    <span class='error' id='popup__link-error'></span>
                     <button class='popup__submitbtn popup__submitNew' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
                     <button class='popup__closebtn popup__closeBtnAdd hover' type='reset' aria-label="Кнопка закрыть"></button>
                 </form>
@@ -118,6 +80,7 @@
         </footer>
     </div>
     <script src='./scripts/index.js'></script>
+    <script src='./scripts/validate.js'></script>
 </body>
 
 </html>

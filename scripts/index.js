@@ -15,6 +15,10 @@ const popupElement = document.querySelector('.popup__element');
 
 
 
+
+
+
+
 //обьявляем переменные для обработки инпутов
 const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
@@ -64,9 +68,8 @@ const initialCards = [{
 
 
 function showPopup(popup) {
-
     popup.classList.add('popup_status_opened');
-
+    document.addEventListener('keydown', closeEsc);
 }
 
 
@@ -74,7 +77,11 @@ function showPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_status_opened');
+    document.removeEventListener('keydown', closeEsc);
 }
+
+
+
 
 
 
@@ -107,7 +114,16 @@ function handleFormSubmitElement(evt) {
     closePopup(popupAddNewElement);
 }
 
+function closeEsc(evt) {
+    const targetPopup = document.querySelector('.popup_status_opened');
+    if (targetPopup) {
+        if (evt.key === 'Escape') {
+            closePopup(targetPopup);
+        }
+    }
+};
 
+//функция добавления карточек
 function addElement(obj) {
     const userElement = elementsTemplate.cloneNode(true);
     const userElementImage = userElement.querySelector('.element__image');
@@ -120,21 +136,18 @@ function addElement(obj) {
 
 
 
-
-
+//рендер карточек из коробки
 initialCards.forEach(addElement);
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 
 
 
-
+//вешаем сабмит на кнопки
 formElement.addEventListener('submit', handleFormSubmitProfile);
 formAddNewElement.addEventListener('submit', handleFormSubmitElement);
 
 
 
-
+//открытие попапов
 profileEditBtn.addEventListener('click', () => {
     showPopup(popupEditProfile);
 });
@@ -143,16 +156,29 @@ addElementBtn.addEventListener('click', () => {
     showPopup(popupAddNewElement);
 });
 
-closeBtnEdit.addEventListener('click', () => {
-    closePopup(popupEditProfile)
-});
-closeBtnAdd.addEventListener('click', () => {
-    closePopup(popupAddNewElement);
+
+//закрытие попапов по оверлею и кнопке закрыть
+popupImage.addEventListener('click', (evt) => {
+    const target = evt.target;
+    if (target.classList.contains('popup') || target.classList.contains('popup__closebtn')) {
+        closePopup(popupImage);
+    }
 });
 
-closeBtnImage.addEventListener('click', () => {
-    closePopup(popupImage);
+popupAddNewElement.addEventListener('click', (evt) => {
+    const target = evt.target;
+    if (target.classList.contains('popup') || target.classList.contains('popup__closebtn')) {
+        closePopup(popupAddNewElement);
+    }
 });
+
+popupEditProfile.addEventListener('click', (evt) => {
+    const target = evt.target;
+    if (target.classList.contains('popup') || target.classList.contains('popup__closebtn')) {
+        closePopup(popupEditProfile);
+    }
+});
+
 
 //делегируем лайки на родителя элементс
 elementsList.addEventListener('click', function(evt) {

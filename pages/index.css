@@ -32,4 +32,7 @@
 @import url(../blocks/popup/__imagecontainer/popup__imagecontainer.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__element/popup__element.css);
+@import url(../blocks/popup/__submitbtn/_status_inactive/popup_submitbtn_status_inactive.css);
+@import url(../blocks/popup/__input/_state_invalid/popup__input_state_invalid.css);
 @import url(../blocks/hover/hover.css);
+@import url(../blocks/error/error.css);
