@@ -21,7 +21,6 @@ inputName.value = profileName.textContent;
 inputTitle.value = profileTitle.textContent;
 const popupLink = document.getElementById('popup__link');
 const popupTitle = document.getElementById('popup__title');
-let times = 0;
 
 //Переменные для функции handleFormSubmit(evt)
 const formElement = document.getElementById('editProfileForm');
