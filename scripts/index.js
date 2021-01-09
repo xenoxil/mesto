@@ -62,7 +62,7 @@ function handleFormSubmitElement(evt) {
     assembleElement(newElement, elementsList, elementsTemplate);
     closePopup(popupAddNewElement);
 }
-
+//функция закрытия по Esc
 function closeEsc(evt) {
     const targetPopup = document.querySelector('.popup_status_opened');
     if (targetPopup) {
@@ -94,36 +94,38 @@ function returnElement(obj, template) {
 function addClone(userElement, parent) {
     parent.prepend(userElement);
 }
+
 //функция сбора карточки с добавлением слушателей
 function assembleElement(obj, parent, template) {
-    addClone(returnElement(obj, template), parent);
-
-    //делегируем лайки на родителя 
-    if (times === 0) {
-        parent.addEventListener('click', function(evt) {
-            const tar = evt.target;
-            if (tar.classList.contains('element__likebtn')) {
-                tar.classList.toggle('element__likebtn_active');
-            }
-        });
-        //делегируем открытие картинок  на родителя 
-        parent.addEventListener('click', function(evt) {
-            const tar = evt.target;
-            if (tar.classList.contains('element__image')) {
-                popupImagePic.src = tar.src;
-                popupElement.textContent = tar.alt;
-                showPopup(popupImage);
-            }
-        });
-        //делегируем удаление на родителя 
-        parent.addEventListener('click', function(evt) {
-            const tar = evt.target;
-            if (tar.classList.contains('element__trashbtn') || tar.classList.contains('element__trashpic')) {
-                tar.closest('.element').remove();
-            }
-        })
-        times = 1;
+    //ищем нужные кнопки в карточке
+    const element = returnElement(obj, template);
+    const likeBtn = element.querySelector('.element__likebtn');
+    const elementImage = element.querySelector('.element__image');
+    const deleteBtn = element.querySelector('.element__trashbtn');
+    //функция слушателя лайков
+    function likeListener() {
+        likeBtn.classList.toggle('element__likebtn_active');
     }
+    //функция открытия попапа картинки
+    function openImage() {
+        popupImagePic.src = elementImage.src;
+        popupElement.textContent = elementImage.alt;
+        showPopup(popupImage);
+    }
+    //функция удаления элемента
+    function deleteElement() {
+        likeBtn.removeEventListener('click', likeListener);
+        elementImage.removeEventListener('click', openImage);
+        deleteBtn.removeEventListener('click', deleteElement);
+        deleteBtn.closest('.element').remove();
+
+    }
+    //вешаем обработчики
+    likeBtn.addEventListener('click', likeListener);
+    elementImage.addEventListener('click', openImage);
+    deleteBtn.addEventListener('click', deleteElement);
+    //добавляем элемент в разметку
+    addClone(element, parent);
 }
 
 //рендер карточек из коробки
