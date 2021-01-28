@@ -1,15 +1,23 @@
-//Обьявляем переменные для обработки кликов
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+
+//конфиг
+const config = {
+        formSelector: '.popup__container',
+        inputSelector: '.popup__input',
+        submitButtonSelector: '.popup__submitbtn',
+        inactiveButtonClass: 'popup__submitbtn_status_inactive',
+        errorClass: '.popup__input_state_invalid'
+    }
+    //Обьявляем переменные для обработки кликов
 const profileEditBtn = document.querySelector('.profile__edit-btn');
 const popupEditProfile = document.querySelector('.popupEditProfile');
-const closeBtnEdit = document.querySelector('.popup__closeBtnEdit');
-const closeBtnAdd = document.querySelector('.popup__closeBtnAdd');
-const closeBtnImage = document.querySelector('.popup__closeBtnImage');
 const elementsList = document.querySelector('.elements');
 const addElementBtn = document.querySelector('.profile__add-btn');
 const popupAddNewElement = document.querySelector('.popupAddNewElement');
-const popupImage = document.querySelector('.popupImage');
+/*const popupImage = document.querySelector('.popupImage');
 const popupImagePic = document.querySelector('.popup__image');
-const popupElement = document.querySelector('.popup__element');
+const popupElement = document.querySelector('.popup__element');*/
 const popupList = document.querySelectorAll('.popup');
 
 //обьявляем переменные для обработки инпутов
@@ -17,8 +25,6 @@ const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
 const inputName = document.getElementById('popup__profilename');
 const inputTitle = document.getElementById('popup__profiletitle');
-inputName.value = profileName.textContent;
-inputTitle.value = profileTitle.textContent;
 const popupLink = document.getElementById('popup__link');
 const popupTitle = document.getElementById('popup__title');
 
@@ -30,8 +36,12 @@ const formAddNewElement = document.getElementById('addNewElementForm');
 const elementsTemplate = document.querySelector('#elements-template').content;
 
 
+
+
+
+
 //функция открытия попапов
-function showPopup(popup) {
+export function showPopup(popup) {
     popup.classList.add('popup_status_opened');
     document.addEventListener('keydown', closeEsc);
 }
@@ -39,6 +49,7 @@ function showPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_status_opened');
     document.removeEventListener('keydown', closeEsc);
+
 }
 
 
@@ -58,7 +69,8 @@ function handleFormSubmitElement(evt) {
     const newElement = {};
     newElement.link = popupLink.value;
     newElement.name = popupTitle.value;
-    assembleElement(newElement, elementsList, elementsTemplate);
+    const card = new Card(newElement, elementsTemplate, elementsList);
+    card.assembleElement();
     closePopup(popupAddNewElement);
 }
 //функция закрытия по Esc
@@ -81,56 +93,13 @@ function setClosePopupListener(popup) {
 }
 
 //функция подготовки новой ноды
-function returnElement(obj, template) {
-    const userElement = template.cloneNode(true);
-    const userElementImage = userElement.querySelector('.element__image');
-    userElementImage.src = obj.link;
-    userElement.querySelector('.element__title').textContent = obj.name;
-    userElementImage.alt = obj.name;
-    return userElement;
-}
-//функция добавления ноды в разметку. 
-function addClone(userElement, parent) {
-    parent.prepend(userElement);
-}
 
-//функция сбора карточки с добавлением слушателей
-function assembleElement(obj, parent, template) {
-    //ищем нужные кнопки в карточке
-    const element = returnElement(obj, template);
-    const likeBtn = element.querySelector('.element__likebtn');
-    const elementImage = element.querySelector('.element__image');
-    const deleteBtn = element.querySelector('.element__trashbtn');
-    //функция слушателя лайков
-    function likeListener() {
-        likeBtn.classList.toggle('element__likebtn_active');
-    }
-    //функция открытия попапа картинки
-    function openImage() {
-        popupImagePic.src = elementImage.src;
-        popupElement.textContent = elementImage.alt;
-        showPopup(popupImage);
-    }
-    //функция удаления элемента
-    function deleteElement() {
-        likeBtn.removeEventListener('click', likeListener);
-        elementImage.removeEventListener('click', openImage);
-        deleteBtn.removeEventListener('click', deleteElement);
-        deleteBtn.closest('.element').remove();
-
-    }
-    //вешаем обработчики
-    likeBtn.addEventListener('click', likeListener);
-    elementImage.addEventListener('click', openImage);
-    deleteBtn.addEventListener('click', deleteElement);
-    //добавляем элемент в разметку
-    addClone(element, parent);
-}
-
-//рендер карточек из коробки
-initialCards.forEach((input) => {
-    assembleElement(input, elementsList, elementsTemplate);
-})
+//функция открытия попапа картинки
+/*function openImage() {
+    popupImagePic.src = elementImage.src;
+    popupElement.textContent = elementImage.alt;
+    showPopup(popupImage);
+}*/
 
 //вешаем сабмит на кнопки
 formElement.addEventListener('submit', handleFormSubmitProfile);
@@ -138,11 +107,19 @@ formAddNewElement.addEventListener('submit', handleFormSubmitElement);
 
 //открытие попапов
 profileEditBtn.addEventListener('click', () => {
+    inputName.value = profileName.textContent;
+    inputTitle.value = profileTitle.textContent;
     showPopup(popupEditProfile);
+    const activeForm = popupEditProfile.querySelector('.popup__form');
+    const validator = new FormValidator(config, activeForm);
+    validator.enableValidation(config);
 });
 
 addElementBtn.addEventListener('click', () => {
     showPopup(popupAddNewElement);
+    const activeForm = popupAddNewElement.querySelector('.popup__form');
+    const validator = new FormValidator(config, activeForm);
+    validator.enableValidation(config);
 });
 
 //вешаем слушатели закрытия на все попапы
