@@ -37,11 +37,8 @@ const formAddNewElement = document.getElementById('addNewElementForm');
 const elementsTemplate = document.querySelector('#elements-template').content;
 
 
-
-
-
-
-
+const profileValidator = new FormValidator(config, profileFormElement);
+const elementValidator = new FormValidator(config, formAddNewElement);
 
 
 
@@ -89,8 +86,7 @@ profileFormElement.addEventListener('submit', handleFormSubmitProfile);
 formAddNewElement.addEventListener('submit', handleFormSubmitElement);
 
 function formValidation(targetPopup) {
-    const activeForm = targetPopup.querySelector('.popup__form');
-    const validator = new FormValidator(config, activeForm);
+
     validator.enableValidation(config);
 }
 
@@ -99,7 +95,7 @@ profileEditBtn.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputTitle.value = profileTitle.textContent;
     showPopup(popupEditProfile);
-    formValidation(popupEditProfile);
+    profileValidator.enableValidation(config);
 });
 
 addElementBtn.addEventListener('click', () => {
@@ -108,7 +104,7 @@ addElementBtn.addEventListener('click', () => {
     addFormInputs.forEach((input) => {
         input.value = '';
     })
-    formValidation(popupAddNewElement);
+    elementValidator.enableValidation(config);
 });
 
 //вешаем слушатели закрытия на все попапы
