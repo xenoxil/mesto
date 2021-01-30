@@ -28,19 +28,7 @@
             </section>
             <section>
                 <ul class='elements'>
-                    <template id='elements-template'>
-                            <li class='element'>
-                                <img class='element__image' src='#' alt='#'>
-                                <button class='element__trashbtn hover' type='button' aria-label='Кнопка удалить'>
-                                  <img src='./images/Vector-1.svg' alt='Кнопка удалить' class='element__trashpic'>
-                                  <img src='./images/Vector.svg' alt='Кнопка удалить' class='element__trashpic'>
-                                </button>
-                                <div class='element__footer'>
-                                    <h2 class='element__title'></h2>
-                                    <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
-                                </div>
-                            </li>
-                        </template>
+
 
                 </ul>
             </section>
@@ -79,10 +67,22 @@
             <p class='footer__copyright'>&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
+    <template id='elements-template'>
+        <li class='element'>
+            <div class='element__container'><img class='element__image' src='#' alt='#'></div>
+            <button class='element__trashbtn hover' type='button' aria-label='Кнопка удалить'>
+              <img src='./images/Vector-1.svg' alt='Кнопка удалить' class='element__trashpic'>
+              <img src='./images/Vector.svg' alt='Кнопка удалить' class='element__trashpic'>
+            </button>
+            <div class='element__footer'>
+                <h2 class='element__title'></h2>
+                <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
+            </div>
+        </li>
+    </template>
     <script src='./scripts/initialCards.js'></script>
     <script type='module' src='./scripts/index.js'></script>
-    <script type='module' src='./scripts/FormValidator.js'></script>
-    <script type='module' src='./scripts/Card.js'></script>
+
 </body>
 
 </html>

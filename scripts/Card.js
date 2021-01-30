@@ -1,9 +1,4 @@
-const elementsTemplate = document.querySelector('#elements-template').content;
-const elementsList = document.querySelector('.elements');
-const popupImage = document.querySelector('.popupImage');
-const popupImagePic = document.querySelector('.popup__image');
-const popupElement = document.querySelector('.popup__element');
-import { showPopup } from './index.js'
+import { showPopup, popupImage, popupImagePic, popupElement } from './utils.js'
 export class Card {
     constructor(obj, template, parent) {
         this._obj = obj;
@@ -11,7 +6,7 @@ export class Card {
         this._parent = parent;
     }
     _returnElement() {
-            const userElement = this._template.cloneNode(true);
+            const userElement = this._template.querySelector('.element').cloneNode(true);
             const userElementImage = userElement.querySelector('.element__image');
             userElementImage.src = this._obj.link;
             userElement.querySelector('.element__title').textContent = this._obj.name;
@@ -19,7 +14,7 @@ export class Card {
             return userElement;
         }
         //функция добавления ноды в разметку. 
-    _addClone(userElement) {
+    addClone(userElement) {
         this._parent.prepend(userElement);
     }
 
@@ -27,10 +22,11 @@ export class Card {
     //функция сбора карточки с добавлением слушателей
     assembleElement() {
         //ищем нужные кнопки в карточке
-        const element = this._returnElement(this._obj, this._template);
-        const likeBtn = element.querySelector('.element__likebtn');
-        const elementImage = element.querySelector('.element__image');
-        const deleteBtn = element.querySelector('.element__trashbtn');
+        this._element = this._returnElement(this._obj, this._template);
+        const element = this._element;
+        const likeBtn = this._element.querySelector('.element__likebtn');
+        const elementImage = this._element.querySelector('.element__image');
+        const deleteBtn = this._element.querySelector('.element__trashbtn');
         //функция слушателя лайков
         function likeListener() {
             likeBtn.classList.toggle('element__likebtn_active');
@@ -44,26 +40,16 @@ export class Card {
 
         //функция удаления элемента
         function deleteElement() {
-            likeBtn.removeEventListener('click', likeListener);
-            elementImage.removeEventListener('click', openImage);
-            deleteBtn.removeEventListener('click', deleteElement);
-            deleteBtn.closest('.element').remove();
+            this._element = element;
+            this._element.remove();
+            console.log(this._element);
         }
 
         //вешаем обработчики
         likeBtn.addEventListener('click', likeListener);
         elementImage.addEventListener('click', openImage);
         deleteBtn.addEventListener('click', deleteElement);
-        //добавляем элемент в разметку
-        this._addClone(element);
+
+        return this._element;
     }
 }
-
-
-
-
-//рендер карточек из коробки
-initialCards.forEach((obj) => {
-    const card = new Card(obj, elementsTemplate, elementsList);
-    const cardElement = card.assembleElement();
-})

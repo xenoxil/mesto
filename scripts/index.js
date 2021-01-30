@@ -1,5 +1,6 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
+import { showPopup, closePopup } from './utils.js'
 
 //конфиг
 const config = {
@@ -29,7 +30,7 @@ const popupLink = document.getElementById('popup__link');
 const popupTitle = document.getElementById('popup__title');
 
 //Переменные для функции handleFormSubmit(evt)
-const formElement = document.getElementById('editProfileForm');
+const profileFormElement = document.getElementById('editProfileForm');
 const formAddNewElement = document.getElementById('addNewElementForm');
 
 //карточки "из коробки"
@@ -40,17 +41,8 @@ const elementsTemplate = document.querySelector('#elements-template').content;
 
 
 
-//функция открытия попапов
-export function showPopup(popup) {
-    popup.classList.add('popup_status_opened');
-    document.addEventListener('keydown', closeEsc);
-}
-//функция закрытия попапов
-function closePopup(popup) {
-    popup.classList.remove('popup_status_opened');
-    document.removeEventListener('keydown', closeEsc);
 
-}
+
 
 
 //отправка формы профайла
@@ -69,19 +61,10 @@ function handleFormSubmitElement(evt) {
     const newElement = {};
     newElement.link = popupLink.value;
     newElement.name = popupTitle.value;
-    const card = new Card(newElement, elementsTemplate, elementsList);
-    card.assembleElement();
+    newCard(newElement);
     closePopup(popupAddNewElement);
 }
-//функция закрытия по Esc
-function closeEsc(evt) {
-    const targetPopup = document.querySelector('.popup_status_opened');
-    if (targetPopup) {
-        if (evt.key === 'Escape') {
-            closePopup(targetPopup);
-        }
-    }
-};
+
 //функция добавления слушателя закрытия попапов по оверлею и кнопке закрыть
 function setClosePopupListener(popup) {
     popup.addEventListener('click', (evt) => {
@@ -102,25 +85,42 @@ function setClosePopupListener(popup) {
 }*/
 
 //вешаем сабмит на кнопки
-formElement.addEventListener('submit', handleFormSubmitProfile);
+profileFormElement.addEventListener('submit', handleFormSubmitProfile);
 formAddNewElement.addEventListener('submit', handleFormSubmitElement);
+
+function formValidation(targetPopup) {
+    const activeForm = targetPopup.querySelector('.popup__form');
+    const validator = new FormValidator(config, activeForm);
+    validator.enableValidation(config);
+}
 
 //открытие попапов
 profileEditBtn.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputTitle.value = profileTitle.textContent;
     showPopup(popupEditProfile);
-    const activeForm = popupEditProfile.querySelector('.popup__form');
-    const validator = new FormValidator(config, activeForm);
-    validator.enableValidation(config);
+    formValidation(popupEditProfile);
 });
 
 addElementBtn.addEventListener('click', () => {
     showPopup(popupAddNewElement);
-    const activeForm = popupAddNewElement.querySelector('.popup__form');
-    const validator = new FormValidator(config, activeForm);
-    validator.enableValidation(config);
+    const addFormInputs = popupAddNewElement.querySelectorAll('.popup__input');
+    addFormInputs.forEach((input) => {
+        input.value = '';
+    })
+    formValidation(popupAddNewElement);
 });
 
 //вешаем слушатели закрытия на все попапы
 popupList.forEach(setClosePopupListener);
+
+//создание экземпляра карточки
+function newCard(obj) {
+    const card = new Card(obj, elementsTemplate, elementsList);
+    const cardElement = card.assembleElement();
+    //добавляем элемент в разметку
+    card.addClone(cardElement);
+}
+
+//рендер карточек из коробки
+initialCards.forEach((obj) => newCard(obj));
