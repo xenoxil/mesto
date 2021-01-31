@@ -28,7 +28,7 @@ export class FormValidator {
     }
 
     //изменение статуса кнопки сабмит 
-    _setSubmitBtnState(validationStatus) {
+    setSubmitBtnState(validationStatus) {
         if (!validationStatus) {
             this._btn.classList.add(this._config.inactiveButtonClass);
             this._btn.disabled = true;
@@ -44,14 +44,14 @@ export class FormValidator {
             inputList.forEach((input) => {
                 input.addEventListener('input', () => {
                     this._isValid(input);
-                    this._setSubmitBtnState(this._form.checkValidity());
+                    this.setSubmitBtnState(this._form.checkValidity());
                 })
             })
         }
         // включить валидацию по конфигу
     enableValidation() {
         this.setErrorListener();
-        this._setSubmitBtnState(this._form.checkValidity());
+        this.setSubmitBtnState(this._form.checkValidity());
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         })
