@@ -1,4 +1,3 @@
-import { EscBtn } from './constants.js'
 export class Popup {
     constructor(popupSelector) {
         this._popup = popupSelector;
@@ -15,14 +14,10 @@ export class Popup {
     }
 
     _handleEscClose(evt) {
-        //функция закрытия по Esc        
-        const isOpened = document.querySelector('.popup_status_opened');
-        if (isOpened) {
-            if (evt.key === EscBtn) {
-
-                this.close();
-            }
-        };
+        //функция закрытия по Esc   
+        if (evt.key === 'Escape') {
+            this.close();
+        }
     }
 
 

@@ -46,6 +46,12 @@ export class FormValidator {
                     this._isValid(input);
                     this.setSubmitBtnState(this._form.checkValidity());
                 })
+                this._form.addEventListener('reset', () => {
+                    inputList.forEach((inputElement) => {
+                        this._hideError(inputElement)
+                        this.setSubmitBtnState(false);
+                    })
+                });
             })
         }
         // включить валидацию по конфигу

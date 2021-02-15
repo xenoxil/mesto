@@ -4,7 +4,7 @@ import { PopupWithForm } from '../components/PopupWithForm.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards } from '../components/initialCards.js'
+import { initialCards } from '../../utils/initialCards.js'
 import {
     popupImage,
     config,
@@ -20,9 +20,10 @@ import {
     popupLink,
     popupTitle,
     elementsTemplate
-} from '../components/constants.js'
+} from '../../utils/constants.js'
 
 import './index.css'
+
 
 
 const profileInfo = new UserInfo({
@@ -30,27 +31,25 @@ const profileInfo = new UserInfo({
     titleSelector: profileTitle
 });
 
-const profilePopup = new PopupWithForm(popupEditProfile, () => {
-
-    profileInfo.setUserInfo(inputName.value, inputTitle.value);
-    profileName.textContent = profileInfo.getUserInfo().name;
-    profileTitle.textContent = profileInfo.getUserInfo().title;
+const profilePopup = new PopupWithForm(popupEditProfile, (data) => {
+    profileInfo.setUserInfo(data.profileName, data.profileTitle);
     profilePopup.close();
 });
-const popupWithImage = new PopupWithImage(popupImage);
 profilePopup.setEventListeners();
+const popupWithImage = new PopupWithImage(popupImage);
+popupWithImage.setEventListeners();
 
+function newCard(item) {
+    const card = new Card(item, elementsTemplate, () => {
+        popupWithImage.open(item);
+    })
+    return card;
+}
 
 const cardList = new Section({
         items: initialCards,
         renderer: function(item) {
-            const card = new Card(item, elementsTemplate, () => {
-                const image = popupImage.querySelector('.popup__image');
-                image.src = item.link;
-                image.alt = item.name;
-                popupWithImage.open(image);
-            })
-            this._container.prepend(card.assembleElement());
+            cardList.addItem(newCard(item).assembleElement())
         }
     },
     elementsList)
@@ -59,33 +58,28 @@ cardList.renderItems()
 //создаём валидатор профайла
 const profileForm = popupEditProfile.querySelector('.popup__form');
 const profileValidator = new FormValidator(config, profileForm);
-profileValidator.enableValidation(config);
+profileValidator.enableValidation();
 //открытие попапов
 profileEditBtn.addEventListener('click', () => {
+    const userData = profileInfo.getUserInfo();
     profilePopup.open();
-    inputName.value = profileName.textContent;
-    inputTitle.value = profileTitle.textContent;
+    inputName.value = userData.name;
+    inputTitle.value = userData.title;
 });
 //создаём валидатор попапа(добавление карточки)
 const elementForm = popupAddNewElement.querySelector('.popup__form');
 const elementValidator = new FormValidator(config, elementForm);
-elementValidator.enableValidation(config);
+elementValidator.enableValidation();
 
 //создаём экземпляр класса попапа(добавление карточки)
 const elementPopup = new PopupWithForm(popupAddNewElement, () => {
     const newElement = {};
     newElement.link = popupLink.value;
     newElement.name = popupTitle.value;
-    const newItem = new Card(newElement, elementsTemplate, () => {
-        const image = popupImage.querySelector('.popup__image');
-        image.src = item.link;
-        image.alt = item.name;
-        popupWithImage.open(image);
-    })
+    console.log(newElement);
 
-    cardList.addItem(newItem.assembleElement())
+    cardList.addItem(newCard(newElement).assembleElement());
     elementPopup.close();
-    elementPopup.reset();
 })
 elementPopup.setEventListeners();
 addElementBtn.addEventListener('click', () => {

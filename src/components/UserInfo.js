@@ -8,18 +8,14 @@ export default class UserInfo {
     }
     getUserInfo() {
         const info = {};
-        info.name = this._name;
-        info.title = this._title;
+        info.name = this._nameSelector.textContent;
+        info.title = this._titleSelector.textContent;
         return info;
     }
     setUserInfo(updateName, updateTitle) {
-        this._name = updateName;
-        this._title = updateTitle;
+        this._nameSelector.textContent = updateName;
+        this._titleSelector.textContent = updateTitle;
 
-    }
-    updateProfileInfo() {
-        this._name = this._nameSelector.textContent;
-        this._title = this._titleSelector.textContent;
     }
 
 }

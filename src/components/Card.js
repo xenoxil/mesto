@@ -37,8 +37,7 @@ export class Card {
         likeBtn.addEventListener('click', likeListener);
         elementImage.addEventListener('click', this._handleCardClick);
         deleteBtn.addEventListener('click', deleteElement);
-        /*//добавляем элемент в разметку
-        this._addClone(element);*/
+
         return element;
     }
 }
