@@ -4,19 +4,18 @@
 <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='stylesheet' href='./pages/index.css' />
     <title>Mesto</title>
 </head>
 
 <body class='body'>
     <div class='page'>
         <header class='header'>
-            <img src='./images/header-logo.svg' class='header__logo' alt='Логотип Место Russia'>
+            <img src="<%=require('./images/header-logo.svg')%>" class='header__logo' alt='Логотип Место Russia'>
 
         </header>
         <main class='content'>
             <section class='profile'>
-                <img src='./images/avatar.jpg' alt='Аватар' class='profile__avatar'>
+                <img src="<%=require('./images/avatar.jpg')%>" alt='Аватар' class='profile__avatar'>
                 <div>
                     <div class='profile__container'>
                         <h1 class='profile__name'>Жак-Ив Кусто</h1>
@@ -29,15 +28,16 @@
             <section>
                 <ul class='elements'>
 
+                    </template>
 
                 </ul>
             </section>
             <section class='popup popupEditProfile'>
                 <form class='popup__container popup__form' id='editProfileForm' name='editProfileForm' autocomplete='off' novalidate>
                     <h3 class='popup__header'>Редактировать профиль</h3>
-                    <input class='popup__input' type='text' name='popup__profilename' id='popup__profilename' required minlength="2" maxlength="40">
+                    <input class='popup__input' type='text' name='profileName' id='popup__profilename' required minlength="2" maxlength="40">
                     <span class='error' id='popup__profilename-error'></span>
-                    <input class='popup__input' type='text' name='popup__profiletitle' id='popup__profiletitle' required minlength="2" maxlength="200">
+                    <input class='popup__input' type='text' name='profileTitle' id='popup__profiletitle' required minlength="2" maxlength="200">
                     <span class='error' id='popup__profiletitle-error'></span>
                     <button class='popup__submitbtn popup__submitProfile' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
                     <button class='popup__closebtn popup__closeBtnEdit hover' type='reset' aria-label="Кнопка закрыть"></button>
@@ -68,20 +68,20 @@
         </footer>
     </div>
     <template id='elements-template'>
-        <li class='element'>
-            <div class='element__container'><img class='element__image' src='#' alt='#'></div>
-            <button class='element__trashbtn hover' type='button' aria-label='Кнопка удалить'>
-              <img src='./images/Vector-1.svg' alt='Кнопка удалить' class='element__trashpic'>
-              <img src='./images/Vector.svg' alt='Кнопка удалить' class='element__trashpic'>
-            </button>
-            <div class='element__footer'>
-                <h2 class='element__title'></h2>
-                <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
-            </div>
-        </li>
-    </template>
-    <script src='./scripts/initialCards.js'></script>
-    <script type='module' src='./scripts/index.js'></script>
+    <li class='element'>
+        <div class='element__container'>
+            <img class='element__image' src='#' alt='#'></div>
+        <button class='element__trashbtn hover' type='button' aria-label='Кнопка удалить'>
+          <img src="<%=require('./images/Vector-1.svg')%>" alt='Кнопка удалить' class='element__trashpic'>
+          <img src="<%=require('./images/Vector.svg')%>" alt='Кнопка удалить' class='element__trashpic'>
+        </button>
+        <div class='element__footer'>
+            <h2 class='element__title'></h2>
+            <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
+        </div>
+    </li>
+</template>
+    <script src='./pages/index.js'></script>
 
 </body>
 
