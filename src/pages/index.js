@@ -10,7 +10,6 @@ import {
     avatarPic,
     avatarLink,
     popupChangeAvatar,
-    devId,
     proccessingText,
     yesText,
     avatarEditBtn,
@@ -34,7 +33,7 @@ import {
 } from '../../utils/constants.js'
 
 import './index.css'
-
+const devId = 'a85e8d4d0d4da73dec474d6c';
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
     headers: {
@@ -45,15 +44,11 @@ const api = new Api({
 
 api.getInfo()
     .then(([cardArray, { name, about, _id, avatar }]) => {
-        cardList.renderItems(cardArray);
+        /*devId = _id;*/
         profileInfo.setUserInfo({ name, about, _id, avatar })
         profileInfo.updateUserInfo();
-
+        cardList.renderItems(cardArray);
     })
-    /*
-        .catch((err) => {
-            console.log(`Ошибка:`, err.status)
-        })*/
 
 
 const cardList = new Section(
@@ -90,14 +85,15 @@ const popupWithImage = new PopupWithImage(popupImage);
 popupWithImage.setEventListeners();
 
 function newCard(item) {
-    const card = new Card(item,
-        elementsTemplate,
+    const card = new Card(item, elementsTemplate,
         () => {
             popupWithImage.open(item);
-        }, () => {
+        },
+
+        () => {
             deleteConfirmationPopup.setSubmitBehaviour(() => {
                 deleteConfirmationPopup.renderLoading(true, proccessingText, yesText);
-
+                debugger;
                 api.deleteCard(card.getCardId())
                     .then(res => {
                         card.deleteElement();
@@ -107,11 +103,10 @@ function newCard(item) {
                 deleteConfirmationPopup.close();
             })
             deleteConfirmationPopup.open();
+        },
+        () => {
 
-
-        }, () => {
-
-            if (card.isLiked(profileInfo.getUserId())) {
+            if (card.isLiked()) {
                 api.removeLike(card.getCardId())
                     .then((res) => {
                         card.updateLikes(res);
@@ -124,14 +119,12 @@ function newCard(item) {
                     })
                     .finally(card._likeBtn.classList.add('element__likebtn_active'))
             }
-
-
         }, devId
     )
     return card;
 
 }
-/*avatarEditBtn.addEventListener('click')*/
+
 
 //создаём валидатор профайла
 const profileForm = popupEditProfile.querySelector('.popup__form');
@@ -157,7 +150,8 @@ const elementPopup = new PopupWithForm(popupAddNewElement, () => {
     newElement.owner = {};
     newElement.owner._id = profileInfo._id;
     newElement.owner.name = profileInfo.name;
-    newElement.owner.about = profileInfo.
+    newElement.owner.about = profileInfo.title;
+    newElement.likes = '';
 
     api.sendElement(newElement)
         .then((res) => {

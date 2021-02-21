@@ -8,7 +8,7 @@ export const saveProccess = 'Сохранение...';
 export const saveText = 'Сохранение';
 
 
-export const devId = "a85e8d4d0d4da73dec474d6c";
+
 export const config = {
         formSelector: '.popup__container',
         inputSelector: '.popup__input',

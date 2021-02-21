@@ -70,9 +70,10 @@ export class Card {
 
     getCardId() {
         return this._cardId;
+        debugger
     }
-    isLiked(userId) {
-        return Boolean(this._likes.find((item) => item._id === userId));
+    isLiked() {
+        return Boolean(this._likes.find((item) => item._id === this._devId));
     }
     updateLikes({ likes }) {
         this._counter.textContent = likes.length;
