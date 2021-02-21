@@ -15,7 +15,8 @@
         </header>
         <main class='content'>
             <section class='profile'>
-                <img src="<%=require('./images/avatar.jpg')%>" alt='Аватар' class='profile__avatar'>
+                <button class='profile__editavatar'></button>
+                <img src="" alt='Аватар' class='profile__avatar'>
                 <div>
                     <div class='profile__container'>
                         <h1 class='profile__name'>Жак-Ив Кусто</h1>
@@ -60,7 +61,22 @@
                     <h3 class='popup__element'></h3>
                     <button class='popup__closebtn popup__closeBtnImage hover' type='button' aria-label="Кнопка закрыть"></button>
                 </div>
-
+            </section>
+            <section class='popup popupDeleteConfirmation'>
+                <div class='popup__container'>
+                    <h3 class='popup__header popup__confirmDeleteHeader'>Вы уверены?</h3>
+                    <button class='popup__submitbtn popup__confirmDeleteBtn' type='submit' aria-label="Кнопка сохранить ">Да</button>
+                    <button class='popup__closebtn popup__closeBtnEdit hover' type='reset' aria-label="Кнопка закрыть"></button>
+                </div>
+            </section>
+            <section class='popup popupChangeAvatar'>
+                <form class='popup__container popup__form' id='changeAvatarForm' name='changeAvatarForm' autocomplete='off' novalidate>
+                    <h3 class='popup__header'>Обновить Аватар</h3>
+                    <input class='popup__input' type='url' name='popup__link' id='popup__linkAvatar' placeholder='Ссылка на картинку' required>
+                    <span class='error' id='popup__linkAvatar-error'></span>
+                    <button class='popup__submitbtn ' type='submit' aria-label="Кнопка сохранить ">Сохранить</button>
+                    <button class='popup__closebtn popup__closeBtnAdd hover' type='reset' aria-label="Кнопка закрыть"></button>
+                </form>
             </section>
         </main>
         <footer class='footer'>
@@ -77,11 +93,13 @@
         </button>
         <div class='element__footer'>
             <h2 class='element__title'></h2>
+            <div>
             <button class='element__likebtn' type='button' aria-label='Кнопка лайк'></button>
+            <span class='element__likecounter'></span>
+            </div>
         </div>
     </li>
 </template>
-    <script src='./pages/index.js'></script>
 
 </body>
 

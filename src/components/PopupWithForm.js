@@ -25,4 +25,14 @@ export class PopupWithForm extends Popup {
         super.close();
     }
 
+    renderLoading(isLoading, loadingText, finishText) {
+        if (isLoading) {
+            this._submitBtn.textContent = loadingText;
+        } else {
+            this._submitBtn.textContent = finishText;
+        }
+    }
+
+
+
 }

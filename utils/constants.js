@@ -2,6 +2,13 @@ export const popupImage = document.querySelector('.popupImage');
 
 export const EscBtn = 'Escape';
 //конфиг
+export const proccessingText = 'Обработка запроса...';
+export const yesText = 'Да';
+export const saveProccess = 'Сохранение...';
+export const saveText = 'Сохранение';
+
+
+export const devId = "a85e8d4d0d4da73dec474d6c";
 export const config = {
         formSelector: '.popup__container',
         inputSelector: '.popup__input',
@@ -15,6 +22,12 @@ export const popupEditProfile = document.querySelector('.popupEditProfile');
 export const elementsList = document.querySelector('.elements');
 export const addElementBtn = document.querySelector('.profile__add-btn');
 export const popupAddNewElement = document.querySelector('.popupAddNewElement');
+export const popupChangeAvatar = document.querySelector('.popupChangeAvatar');
+export const avatarEditBtn = document.querySelector('.profile__editavatar');
+export const popupDeleteConfirmation = document.querySelector('.popupDeleteConfirmation');
+export const avatarLink = popupChangeAvatar.querySelector('.popup__input')
+export const avatarPic = document.querySelector('.profile__avatar');
+
 
 //обьявляем переменные для обработки инпутов
 export const profileName = document.querySelector('.profile__name');
