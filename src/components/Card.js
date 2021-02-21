@@ -70,7 +70,6 @@ export class Card {
 
     getCardId() {
         return this._cardId;
-        debugger
     }
     isLiked() {
         return Boolean(this._likes.find((item) => item._id === this._devId));

@@ -6,12 +6,14 @@ export class PopupWithSubmit extends Popup {
         this._submitFunction = () => console.log('Пустая функция удаления');
     }
     setEventListeners() {
-        this._popup.querySelector('.popup__submitbtn').addEventListener('submit', this._submitFunction);
+        this._popup.querySelector('.popup__submitbtn').addEventListener('click', this._submitFunction);
         super.setEventListeners();
     }
     setSubmitBehaviour(submitFunction) {
-        this._popup.querySelector('.popup__submitbtn').removeEventListener('submit', this._submitFunction);
-        this._popup.querySelector('.popup__submitbtn').addEventListener('click', submitFunction);
+        debugger
+        this._popup.querySelector('.popup__submitbtn').removeEventListener('click', this._submitFunction);
+        this._submitFunction = submitFunction;
+        this._popup.querySelector('.popup__submitbtn').addEventListener('click', this._submitFunction);
     }
 
     renderLoading(isLoading, loadingText, finishText) {

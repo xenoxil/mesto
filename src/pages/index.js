@@ -33,7 +33,7 @@ import {
 } from '../../utils/constants.js'
 
 import './index.css'
-const devId = 'a85e8d4d0d4da73dec474d6c';
+let devId = null;
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
     headers: {
@@ -44,7 +44,7 @@ const api = new Api({
 
 api.getInfo()
     .then(([cardArray, { name, about, _id, avatar }]) => {
-        /*devId = _id;*/
+        devId = _id;
         profileInfo.setUserInfo({ name, about, _id, avatar })
         profileInfo.updateUserInfo();
         cardList.renderItems(cardArray);
@@ -93,7 +93,6 @@ function newCard(item) {
         () => {
             deleteConfirmationPopup.setSubmitBehaviour(() => {
                 deleteConfirmationPopup.renderLoading(true, proccessingText, yesText);
-                debugger;
                 api.deleteCard(card.getCardId())
                     .then(res => {
                         card.deleteElement();
@@ -151,12 +150,14 @@ const elementPopup = new PopupWithForm(popupAddNewElement, () => {
     newElement.owner._id = profileInfo._id;
     newElement.owner.name = profileInfo.name;
     newElement.owner.about = profileInfo.title;
-    newElement.likes = '';
+    newElement.likes = [];
 
     api.sendElement(newElement)
         .then((res) => {
+            newElement._id = res._id;
             cardList.addItem(newCard(newElement).assembleElement());
         })
+
     elementPopup.close();
 })
 elementPopup.setEventListeners();
