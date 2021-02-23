@@ -49,6 +49,7 @@ api.getInfo()
         profileInfo.updateUserInfo();
         cardList.renderItems(cardArray);
     })
+    .catch((err) => console.log('Ошибка:', err.status))
 
 
 const cardList = new Section(
@@ -74,7 +75,6 @@ const profilePopup = new PopupWithForm(popupEditProfile, (data) => {
             profileInfo.setUserInfo(res);
             profileInfo.updateUserInfo();
             profilePopup.close();
-            return res.json();
         })
         .finally((res) => {
             profilePopup.renderLoading(false, saveProccess, saveText)
@@ -110,13 +110,11 @@ function newCard(item) {
                     .then((res) => {
                         card.updateLikes(res);
                     })
-                    .finally(card._likeBtn.classList.remove('element__likebtn_active'))
             } else {
                 api.sendLike(card.getCardId())
                     .then((res) => {
                         card.updateLikes(res);
                     })
-                    .finally(card._likeBtn.classList.add('element__likebtn_active'))
             }
         }, devId
     )
@@ -173,7 +171,8 @@ avatarValidator.enableValidation();
 const avatarPopup = new PopupWithForm(popupChangeAvatar, () => {
     api.changeAvatarIcon(avatarLink.value)
         .then((res) => {
-            avatarPic.src = res.avatar;
+            profileInfo.setUserInfo(res);
+            profileInfo.updateUserInfo();
         })
     avatarPopup.close();
 })

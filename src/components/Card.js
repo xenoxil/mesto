@@ -77,6 +77,7 @@ export class Card {
     updateLikes({ likes }) {
         this._counter.textContent = likes.length;
         this._likes = likes;
+        this._likeBtn.classList.toggle('element__likebtn_active')
     }
 
 
